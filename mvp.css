@@ -126,7 +126,7 @@ html, body {
   border: none;
   padding: 11px 26px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
   border-radius: 7px;
   cursor: pointer;
   box-shadow: 0 5px 12px rgba(0,0,0,0.35);
@@ -174,7 +174,7 @@ html, body {
   border: 2px solid #c40000;
   padding: 10px 22px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   border-radius: 7px;
   cursor: pointer;
   transition: 0.3s;
@@ -192,7 +192,7 @@ html, body {
   border: 2px solid #c40000;
   padding: 10px 22px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   border-radius: 7px;
   cursor: pointer;
   transition: 0.3s;
@@ -214,11 +214,11 @@ html, body {
   outline: none;
 
   font-size: 40px;
-  font-weight: 800;
+  font-weight: 400;
   text-align: center;
   text-transform: uppercase;
 
-  color: #ffd200;
+  color: #ebc520;
   letter-spacing: 2px;
   width: 550px;
 }
@@ -242,7 +242,7 @@ html, body {
 }
 
 .mvp-heading {
-  font-size: 48px;
+  font-size: 45px;
   font-weight: 900;
   text-transform: uppercase;
 
@@ -252,4 +252,17 @@ html, body {
 
   letter-spacing: 3px;
 }
+
+.mvp-heading-download {
+  font-size: 40px;              /* 🔼 increase size */
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+
+  color: #ffd200;               /* 🔥 GOLD */
+  letter-spacing: 3px;
+
+  margin-top: 10px;
+}
+
 
