@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Match MVP</title>
+  <link rel="stylesheet" href="mvp.css">
+</head>
+<body onload="loadMVP()">
+
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="assets/asia.png" class="asia-logo">
+
+    <!-- <div class="title-box">
+      <h1>MATCH MVP</h1>
+      <span>Top 3 Players</span>
+    </div> -->
+<div class="mvp-title">
+  <h1 class="mvp-heading">MVP Rankings</h1>
+</div>
+
+
+
+  </div>
+
+  <!-- MVP CENTER SECTION -->
+  <div class="mvp-section">
+
+    <!-- PLAYER IMAGES -->
+    <div class="mvp-images">
+      <img src="assets/2.png" alt="2nd">
+      <img src="assets/1.png" alt="1st">
+      <img src="assets/3.png" alt="3rd">
+    </div>
+
+    <!-- MVP BOXES -->
+    <div class="mvp-cards">
+      <div class="mvp-card silver" id="mvp2">—<br>Kills: 0</div>
+      <div class="mvp-card gold" id="mvp1">—<br>Kills: 0</div>
+      <div class="mvp-card bronze" id="mvp3">—<br>Kills: 0</div>
+    </div>
+
+
+    <!-- MATCH TITLE INPUT (MOVED BELOW MVP CARDS) -->
+<div class="match-title-box">
+  <input
+    type="text"
+    class="mvp-input"
+    placeholder="ENTER MATCH TITLE"
+  />
+</div>
+
+
+
+    <!-- BUTTONS -->
+<div class="mvp-buttons no-export">
+  <button class="upload-btn" onclick="goBack()">Upload More Files</button>
+  <button class="download-btn" onclick="downloadMVP()">Download PNG</button>
+  <button class="reset-btn" onclick="resetMVP()">Reset MVP</button>
+    </div>
+
+  </div>
+
+  <!-- FOOTER STRIP -->
+  <div class="partner-strip">
+    <div class="partner-box">
+      <span>MANAGING<br>PARTNER</span>
+      <img src="assets/managing-partner.png">
+    </div>
+
+    <div class="partner-box">
+      <span>PRESENTED<br>BY</span>
+      <img src="assets/presentedby.png">
+    </div>
+
+    <div class="partner-box">
+      <span>PLATFORM<br>PARTNER</span>
+      <img src="assets/platform-partner.png">
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

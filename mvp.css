@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Impact, Arial, sans-serif;
+}
+
+/* ================= BODY ================= */
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ================= POSTER (810 x 890) ================= */
+.poster {
+  width: 810px;
+  height: 890px;
+  background: url("assets/background.png") no-repeat center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= HEADER ================= */
+.header {
+  position: absolute;
+  top: 20px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.asia-logo {
+  height: 115px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+}
+
+/* ================= TITLE INPUT ================= */
+.mvp-title {
+  position: absolute;
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+
+
+
+/* ================= MVP SECTION ================= */
+.mvp-section {
+  position: absolute;
+  top: 185px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ================= ROW-WISE ALIGNMENT ================= */
+.mvp-images,
+.mvp-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+/* ================= PLAYER IMAGES ================= */
+.mvp-images img {
+  height: 210px;
+  width: 210px
+  transition: transform 0.3s ease;
+}
+
+.mvp-images img:nth-child(2) {
+  transform: translateY(-12px);
+}
+
+/* ================= MVP CARDS ================= */
+.mvp-card {
+  width: 205px;
+  height: 105px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: -18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+.mvp-card.gold {
+  transform: translateY(-18px);
+  box-shadow: 0 0 22px rgba(255, 215, 0, 0.75);
+}
+
+/* ================= COLORS ================= */
+.gold { background: #ffd700; }
+.silver { background: #e0e0e0; }
+.bronze { background: #c47a2c; }
+
+/* ================= BUTTONS ================= */
+.mvp-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  z-index: 5;
+}
+
+.download-btn {
+  background: #ffcc33;
+  color: #000;
+  border: none;
+  padding: 11px 26px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 7px;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.35);
+  transition: 0.3s;
+}
+
+.download-btn:hover {
+  background: #ffb800;
+  transform: translateY(-2px);
+}
+/* ================= FOOTER STRIP (REDUCED HEIGHT) ================= */
+.partner-strip {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 90px;   /* ⬅ reduced */
+  background: linear-gradient(to right, #8b0000, #b30000, #8b0000);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.partner-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.partner-box span {
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.partner-box img {
+  height: 60px;
+}
+
+
+/* Reset */
+.reset-btn {
+  background: #ffffff;
+  color: #c40000;
+  border: 2px solid #c40000;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reset-btn:hover {
+  background: #c40000;
+  color: #fff;
+}
+
+/* Upload */
+.upload-btn {
+  background: #ffffff;
+  color: #c40000;
+  border: 2px solid #c40000;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: #c40000;
+  color: #fff;
+}
+
+
+.match-title-box {
+  margin-top: 30px;
+}
+
+.mvp-input {
+  background: transparent;
+  border: none;
+  outline: none;
+
+  font-size: 40px;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #ffd200;
+  letter-spacing: 2px;
+  width: 550px;
+}
+
+
+.kills {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #dc0404;
+}
+
+.player-name {
+  font-size: 21px;
+  font-weight: 450;
+}
+
+.team-name {
+  font-size: 19px;
+  font-weight: 450;
+}
+
+.mvp-heading {
+  font-size: 48px;
+  font-weight: 900;
+  text-transform: uppercase;
+
+  background: linear-gradient(90deg, #ffd700, #ff9f00, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: 3px;
+}
+
