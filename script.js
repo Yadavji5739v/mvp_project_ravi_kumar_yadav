@@ -143,22 +143,40 @@ function fillCard(id, player) {
 function downloadMVP() {
   const poster = document.querySelector(".poster");
   const hideElements = document.querySelectorAll(".no-export");
+  const input = document.querySelector(".mvp-input");
 
   if (!poster) return;
 
+  // 🔹 Save input value
+  const titleText = input.value || "MVP Rankings";
+
+  // 🔹 Replace input with text
+  const titleDiv = document.createElement("div");
+  titleDiv.className = "mvp-heading-download";
+  titleDiv.textContent = titleText;
+
+  input.style.display = "none";
+  input.parentElement.appendChild(titleDiv);
+
+  // 🔹 Hide buttons
   hideElements.forEach(el => el.style.display = "none");
 
-  html2canvas(poster, { scale: 2, useCORS: true })
-    .then(canvas => {
-      const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/png");
-      link.download = "match-mvp.png";
-      link.click();
-    })
-    .finally(() => {
-      hideElements.forEach(el => el.style.display = "flex");
-    });
+  html2canvas(poster, {
+    scale: 2,
+    useCORS: true
+  }).then(canvas => {
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "match-mvp.png";
+    link.click();
+  }).finally(() => {
+    // 🔹 Restore input
+    titleDiv.remove();
+    input.style.display = "block";
+    hideElements.forEach(el => el.style.display = "flex");
+  });
 }
+
 
 
 /* =====================================================
