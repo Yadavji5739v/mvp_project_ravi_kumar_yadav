@@ -71,8 +71,10 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 31px;
 }
+
+
 
 /* ================= PLAYER IMAGES ================= */
 .mvp-images img {
@@ -81,9 +83,32 @@ html, body {
   transition: transform 0.3s ease;
 }
 
+/* MVP2 IMAGE (LEFT) — move down */
+.mvp-images img:nth-child(1) {
+  transform: translateY(35px);
+}
+/* MVP2 CARD (LEFT) — move down */
+.mvp-cards .mvp-card:nth-child(1) {
+  transform: translateY(35px);
+}
+
+
+
 .mvp-images img:nth-child(2) {
   transform: translateY(-12px);
 }
+
+/* MVP3 IMAGE (RIGHT) — move down */
+.mvp-images img:nth-child(3) {
+  transform: translateY(55px);
+}
+
+/* MVP3 CARD (RIGHT) — move down */
+.mvp-cards .mvp-card:nth-child(3) {
+  transform: translateY(55px);
+}
+
+
 
 /* ================= MVP CARDS ================= */
 .mvp-card {
