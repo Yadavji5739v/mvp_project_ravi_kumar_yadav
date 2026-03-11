@@ -1,183 +1,149 @@
 const MVP_KEY = "ff_mvp_players";
 
 /* ==========================
-   FILE UPLOAD (FIXED)
+   SCALE POSTER TO FIT SCREEN — always perfect 16:9, no stretching
+========================== */
+function scalePoster() {
+  const poster = document.querySelector(".poster");
+  if (!poster) return;
+  const scale = Math.min(
+    window.innerWidth  / 1920,
+    window.innerHeight / 1080
+  );
+  poster.style.transform = `scale(${scale})`;
+}
+window.addEventListener("resize", scalePoster);
+document.addEventListener("DOMContentLoaded", scalePoster);
+
+/* ==========================
+   FILE UPLOAD
 ========================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("logFile");
+  const input  = document.getElementById("logFile");
   const status = document.getElementById("statusText");
-
-  if (!input) {
-    console.error("❌ logFile input not found");
-    return;
-  }
+  if (!input) return;
 
   input.addEventListener("change", function () {
     if (!this.files || this.files.length === 0) return;
-
     const file = this.files[0];
-    console.log("📂 Selected file:", file.name);
-
     const reader = new FileReader();
-
     reader.onload = (e) => {
-      const text = e.target.result;
-
-      processMVP(text);
-
-      if (status) {
-        status.textContent = "File uploaded successfully ✓";
-      }
-
-      // ✅ allow re-upload of same file
+      processMVP(e.target.result);
+      if (status) status.textContent = "File uploaded successfully ✓";
       this.value = "";
     };
-
-    reader.onerror = () => {
-      console.error("❌ File read failed");
-    };
-
+    reader.onerror = () => console.error("❌ File read failed");
     reader.readAsText(file);
   });
 });
 
-
 /* =====================================================
-   PROCESS MVP DATA (FIXED – ACCUMULATES DATA)
+   PROCESS MVP DATA
 ===================================================== */
 function processMVP(text) {
   const lines = text.split("\n");
-
-  // ✅ LOAD existing MVP data (IMPORTANT FIX)
   let players = JSON.parse(localStorage.getItem(MVP_KEY)) || {};
-
   let currentTeamRank = 999;
   let currentTeamName = "UNKNOWN TEAM";
 
   lines.forEach(rawLine => {
     const line = rawLine.trim();
 
-    /* ---------- TEAM LINE ---------- */
     if (line.startsWith("TeamName:")) {
       const teamMatch = line.match(/TeamName:\s(.+?)\s+Rank:/);
       const rankMatch = line.match(/Rank:\s+(\d+)/);
-
       if (teamMatch) currentTeamName = teamMatch[1].trim();
       if (rankMatch) currentTeamRank = parseInt(rankMatch[1]);
-
       return;
     }
 
-    /* ---------- PLAYER LINE ---------- */
     if (line.startsWith("NAME:")) {
       const nameMatch = line.match(/NAME:\s(.+?)\s+ID:/);
       const killMatch = line.match(/KILL:\s+(\d+)/);
-
       if (!nameMatch || !killMatch) return;
 
       const playerName = nameMatch[1].trim();
-      const kills = parseInt(killMatch[1]);
+      const kills      = parseInt(killMatch[1]);
 
       if (!players[playerName]) {
-        players[playerName] = {
-          name: playerName,
-          team: currentTeamName,
-          kills: 0,
-          bestTeamRank: currentTeamRank
-        };
+        players[playerName] = { name: playerName, team: currentTeamName, kills: 0, bestTeamRank: currentTeamRank };
       }
-
       players[playerName].kills += kills;
-      players[playerName].team = currentTeamName;
-
-      // keep best (lowest) rank
-      players[playerName].bestTeamRank = Math.min(
-        players[playerName].bestTeamRank,
-        currentTeamRank
-      );
+      players[playerName].team   = currentTeamName;
+      players[playerName].bestTeamRank = Math.min(players[playerName].bestTeamRank, currentTeamRank);
     }
   });
 
   localStorage.setItem(MVP_KEY, JSON.stringify(players));
-  console.log("🏆 MVP data saved:", players);
 }
-
 
 /* =====================================================
    LOAD MVP PAGE
 ===================================================== */
 function loadMVP() {
+  scalePoster();
+
   const data = JSON.parse(localStorage.getItem(MVP_KEY));
   if (!data || Object.keys(data).length === 0) return;
 
   const players = Object.values(data);
-
-  players.sort((a, b) => {
-    if (b.kills !== a.kills) return b.kills - a.kills;
-    return a.bestTeamRank - b.bestTeamRank;
-  });
+  players.sort((a, b) => b.kills !== a.kills ? b.kills - a.kills : a.bestTeamRank - b.bestTeamRank);
 
   const [first, second, third] = players;
-
-  if (first) fillCard("mvp1", first);
+  if (first)  fillCard("mvp1", first);
   if (second) fillCard("mvp2", second);
-  if (third) fillCard("mvp3", third);
+  if (third)  fillCard("mvp3", third);
 }
 
-/* Helper to fill card safely */
+/* =====================================================
+   FILL CARD
+===================================================== */
 function fillCard(id, player) {
   const el = document.getElementById(id);
   if (!el) return;
-
   el.innerHTML = `
-    <div class="player-name">${player.name}</div>
-    <div class="team-name">${player.team}</div>
-    <div class="kills">Kills: ${player.kills}</div>
+    <div class="card-info">
+      <div class="kills-line">KILLS: <span class="kills-val">${player.kills}</span></div>
+      <div class="ign-line">IGN: <span class="ign-val">${player.name}</span></div>
+      <div class="team-line">TEAM NAME: <span class="team-val">${player.team}</span></div>
+    </div>
   `;
 }
 
-
 /* =====================================================
-   DOWNLOAD MVP IMAGE
+   DOWNLOAD — captures the real 1920x1080 poster directly
+   by temporarily removing the scale transform
 ===================================================== */
 function downloadMVP() {
-  const poster = document.querySelector(".poster");
+  const poster       = document.querySelector(".poster");
   const hideElements = document.querySelectorAll(".no-export");
-  const input = document.querySelector(".mvp-input");
-
   if (!poster) return;
 
-  // 🔹 Save input value
-  const titleText = input.value || "MVP Rankings";
+  // Step 1: remove scale so html2canvas sees real 1920x1080 pixels
+  poster.style.transform = "none";
+  hideElements.forEach(el => el.style.visibility = "hidden");
 
-  // 🔹 Replace input with text
-  const titleDiv = document.createElement("div");
-  titleDiv.className = "mvp-heading-download";
-  titleDiv.textContent = titleText;
-
-  input.style.display = "none";
-  input.parentElement.appendChild(titleDiv);
-
-  // 🔹 Hide buttons
-  hideElements.forEach(el => el.style.display = "none");
-
+  // Step 2: capture at exactly 1920x1080 (scale:1 = 1px per px)
   html2canvas(poster, {
-    scale: 2,
-    useCORS: true
+    scale: 1,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: null,
+    width: 1920,
+    height: 1080,
+    x: 0,
+    y: 0
   }).then(canvas => {
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png");
+    const link    = document.createElement("a");
+    link.href     = canvas.toDataURL("image/png");
     link.download = "match-mvp.png";
     link.click();
   }).finally(() => {
-    // 🔹 Restore input
-    titleDiv.remove();
-    input.style.display = "block";
-    hideElements.forEach(el => el.style.display = "flex");
+    // Step 3: restore scale
+    scalePoster();
+    hideElements.forEach(el => el.style.visibility = "");
   });
 }
-
-
 
 /* =====================================================
    NAVIGATION & RESET
@@ -194,22 +160,9 @@ function resetMVP() {
 
 function goToMVP() {
   const data = localStorage.getItem("ff_mvp_players");
-
   if (!data || data === "{}") {
     alert("Please upload a log file first");
     return;
   }
-
   window.location.href = "mvp.html";
-}
-
-function fillCard(id, player) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  el.innerHTML = `
-    <div class="kills">Kills: ${player.kills}</div>
-    <div class="player-name">${player.name}</div>
-    <div class="team-name">${player.team}</div>
-  `;
 }

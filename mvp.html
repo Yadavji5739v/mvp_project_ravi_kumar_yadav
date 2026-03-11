@@ -11,74 +11,120 @@
 
   <!-- HEADER -->
   <div class="header">
-    <img src="assets/asia.png" class="asia-logo">
+    <div class="header-left">
+      <img src="assets/managing-partner.png" class="header-logo">
+      <div class="header-divider"></div>
+      <img src="assets/presentedby.png" class="header-logo">
+    </div>
 
-    <!-- <div class="title-box">
-      <h1>MATCH MVP</h1>
-      <span>Top 3 Players</span>
-    </div> -->
-<div class="mvp-title">
-  <h1 class="mvp-heading">MVP Rankings</h1>
-</div>
+    <div class="header-center">
+      <img src="assets/asia.png" class="asia-logo">
+      <h1 class="mvp-heading">MVP</h1>
+      <div class="mvp-sub-badge">RANKING</div>
+    </div>
 
-
-
+    <div class="header-right">
+      <img src="assets/platform-partner.png" class="header-logo-right">
+    </div>
   </div>
 
-  <!-- MVP CENTER SECTION -->
+  <!-- MVP CARDS SECTION -->
   <div class="mvp-section">
+    <div class="mvp-cards-row">
 
-    <!-- PLAYER IMAGES -->
-    <div class="mvp-images">
-      <img src="assets/2.png" alt="2nd">
-      <img src="assets/1.png" alt="1st">
-      <img src="assets/3.png" alt="3rd">
+      <!-- #1 -->
+      <div class="mvp-card-wrap rank-1">
+        <div class="rank-badge">#1</div>
+        <div class="player-img-wrap">
+          <img src="assets/1.png" alt="1st" class="player-img">
+        </div>
+        <div class="mvp-card" id="mvp1">
+          <div class="card-info">
+            <div class="kills-line">KILLS: <span class="kills-val">0</span></div>
+            <div class="ign-line">IGN: <span class="ign-val">—</span></div>
+            <div class="team-line">TEAM NAME: <span class="team-val">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #2 -->
+      <div class="mvp-card-wrap rank-2">
+        <div class="rank-badge">#2</div>
+        <div class="player-img-wrap">
+          <img src="assets/2.png" alt="2nd" class="player-img">
+        </div>
+        <div class="mvp-card" id="mvp2">
+          <div class="card-info">
+            <div class="kills-line">KILLS: <span class="kills-val">0</span></div>
+            <div class="ign-line">IGN: <span class="ign-val">—</span></div>
+            <div class="team-line">TEAM NAME: <span class="team-val">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #3 -->
+      <div class="mvp-card-wrap rank-3">
+        <div class="rank-badge">#3</div>
+        <div class="player-img-wrap">
+          <img src="assets/3.png" alt="3rd" class="player-img">
+        </div>
+        <div class="mvp-card" id="mvp3">
+          <div class="card-info">
+            <div class="kills-line">KILLS: <span class="kills-val">0</span></div>
+            <div class="ign-line">IGN: <span class="ign-val">—</span></div>
+            <div class="team-line">TEAM NAME: <span class="team-val">—</span></div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <!-- MVP BOXES -->
-    <div class="mvp-cards">
-      <div class="mvp-card silver" id="mvp2">—<br>Kills: 0</div>
-      <div class="mvp-card gold" id="mvp1">—<br>Kills: 0</div>
-      <div class="mvp-card bronze" id="mvp3">—<br>Kills: 0</div>
-    </div>
-
-
-    <!-- MATCH TITLE INPUT (MOVED BELOW MVP CARDS) -->
-<div class="match-title-box">
-  <input
-    type="text"
-    class="mvp-input"
-    placeholder="ENTER MATCH TITLE"
-  />
-</div>
-
-
-
-    <!-- BUTTONS -->
-<div class="mvp-buttons no-export">
-  <button class="upload-btn" onclick="goBack()">Upload More Files</button>
-  <button class="download-btn" onclick="downloadMVP()">Download PNG</button>
-  <button class="reset-btn" onclick="resetMVP()">Reset MVP</button>
-    </div>
-
+  <!-- BUTTONS (hidden on export) -->
+  <div class="mvp-buttons no-export">
+    <button class="upload-btn" onclick="goBack()">Upload More Files</button>
+    <button class="download-btn" onclick="downloadMVP()">Download PNG</button>
+    <button class="reset-btn" onclick="resetMVP()">Reset MVP</button>
   </div>
 
   <!-- FOOTER STRIP -->
   <div class="partner-strip">
-    <div class="partner-box">
-      <span>MANAGING<br>PARTNER</span>
-      <img src="assets/managing-partner.png">
+
+    <!-- Dark wedge transition -->
+    <div class="partner-strip-divider"></div>
+
+    <!-- Tick marks before yellow panel -->
+    <div class="partner-strip-ticks">
+      <span></span>
+      <span></span>
     </div>
 
-    <div class="partner-box">
-      <span>PRESENTED<br>BY</span>
-      <img src="assets/presentedby.png">
+    <!-- Three dark sections wrapped together -->
+    <div class="partner-boxes">
+
+      <div class="partner-box">
+        <span>OPERATION PARTNER</span>
+        <img src="assets/managing-partner.png">
+      </div>
+
+      <div class="partner-box">
+        <span>POWERED BY</span>
+        <img src="assets/presentedby.png">
+      </div>
+
+      <!-- CO-POWERED: left-aligned so logo is always visible -->
+      <div class="partner-box co-powered">
+        <span>CO-POWERED BY</span>
+        <img src="assets/platform-partner.png">
+      </div>
+
     </div>
 
-    <div class="partner-box">
-      <span>PLATFORM<br>PARTNER</span>
-      <img src="assets/platform-partner.png">
+    <!-- Yellow brand panel -->
+    <div class="brand-box">
+      <img src="assets/ab.png" class="brand-logo">
     </div>
+
   </div>
 
 </div>
