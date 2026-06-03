@@ -86,7 +86,7 @@ html, body {
 }
 
 .mvp-sub-badge {
-  background: #e8a800;
+  background: #06ebdc;
   color: #000;
   font-size: 23px;
   font-weight: 900;
@@ -143,7 +143,7 @@ html, body {
   z-index: 30;
   font-size: 36px;
   font-weight: 500;
-  background: #e8a800;
+  background: #00dce8;
   color: #fff;
   padding: 8px 18px;
   border-radius: 8px;
@@ -184,10 +184,10 @@ html, body {
 .mvp-card {
   width: 400px;
   min-height: 180px;
-  border: 3px solid #e8a800;
+  border: 3px solid #14fbef;
   border-top: none;
   border-radius: 0 0 14px 14px;
-  background: linear-gradient(160deg, #ffe204 0%, #c57b0b 55%, #ffe522 100%);
+  background: linear-gradient(160deg, #48faeb 0%, #02e9fa 55%, #34e6d7 0%,);
   padding: 20px 24px 22px;
   position: relative;
   z-index: 5;
@@ -201,7 +201,7 @@ html, body {
   left: -3px;
   right: -3px;
   height: 422px;
-  border: 3px solid #e8a800;
+  border: 3px solid #4ab9b3;
   border-bottom: none;
   border-radius: 14px 14px 0 0;
   pointer-events: none;
